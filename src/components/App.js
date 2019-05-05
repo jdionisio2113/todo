@@ -10,13 +10,24 @@ class App extends React.Component {
         { id: 2, content: "play mario kart" }
       ]
     };
+
+    this.deleteTodo = this.deleteTodo.bind(this);
+  }
+
+  deleteTodo(id) {
+    const todos = this.state.todos.filter(todo => {
+      return todo.id !== id;
+    });
+    this.setState({
+      todos: todos
+    });
   }
 
   render() {
     return (
-      <div className="App">
-        <h1 className="center blue-text">Todo's</h1>
-        <Todos todos={this.state.todos} />
+      <div className="todo-app container">
+        <h1 className="center blue-text">Todos</h1>
+        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
       </div>
     );
   }
