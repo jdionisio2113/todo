@@ -13,6 +13,7 @@ class App extends React.Component {
     };
 
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
 
   deleteTodo(id) {
@@ -24,12 +25,20 @@ class App extends React.Component {
     });
   }
 
+  addTodo(todo) {
+    todo.id = Math.random();
+    let todos = [...this.state.todos, todo];
+    this.setState({
+      todos: todos
+    });
+  }
+
   render() {
     return (
       <div className="todo-app container">
         <h1 className="center blue-text">Todos</h1>
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
-        <AddTodo />
+        <AddTodo addTodo={this.addTodo} />
       </div>
     );
   }
